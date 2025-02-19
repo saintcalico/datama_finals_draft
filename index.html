@@ -1,33 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Display</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Our Products</h1>
-    </header>
-    <main>
-        <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Product 1">
-            <h2>Product 1</h2>
-            <p>This is a description of Product 1. It's an amazing product that you will love!</p>
-            <p class="price">$19.99</p>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Product 2">
-            <h2>Product 2</h2>
-            <p>This is a description of Product 2. It's another great product with awesome features!</p>
-            <p class="price">$29.99</p>
-            <button>Add to Cart</button>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2023 My Store. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+<script>
+    let cart = [];
+    let cartCount = 0;
+
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        cartCount++;
+        updateCartUI();
+        updateURL();
+    }
+
+    function updateCartUI() {
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCountElement = document.getElementById('cart-count');
+
+        cartItems.innerHTML = '';
+        let total = 0;
+
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+            cartItems.appendChild(li);
+            total += item.price;
+        });
+
+        cartTotal.textContent = total.toFixed(2);
+        cartCountElement.textContent = cartCount;
+    }
+
+    function toggleCart() {
+        const popupCart = document.getElementById('popup-cart');
+        popupCart.style.display = popupCart.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function closeCart() {
+        document.getElementById('popup-cart').style.display = 'none';
+    }
+
+    function updateURL() {
+        const queryString = encodeURIComponent(JSON.stringify(cart));
+        window.history.replaceState({}, '', `?cart=${queryString}`);
+    }
+
+    function loadCartFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const cartData = params.get('cart');
+        if (cartData) {
+            cart = JSON.parse(decodeURIComponent(cartData));
+            cartCount = cart.length;
+            updateCartUI();
+        }
+    }
+
+    window.addEventListener('load', loadCartFromURL);
+</script>

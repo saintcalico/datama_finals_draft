@@ -1,0 +1,29 @@
+<script>
+    function loadCart() {
+        const params = new URLSearchParams(window.location.search);
+        const cartData = params.get('cart');
+        let cart = cartData ? JSON.parse(decodeURIComponent(cartData)) : [];
+
+        const checkoutItems = document.getElementById('checkout-items');
+        const checkoutTotal = document.getElementById('checkout-total');
+
+        checkoutItems.innerHTML = '';
+        let total = 0;
+
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+            checkoutItems.appendChild(li);
+            total += item.price;
+        });
+
+        checkoutTotal.textContent = total.toFixed(2);
+    }
+
+    function checkout() {
+        alert('Thank you for your purchase!');
+        window.location.href = 'index.html';
+    }
+
+    window.addEventListener('load', loadCart);
+</script>
