@@ -192,14 +192,14 @@
 
     <!-- Product View -->
     <main id="product-view">
-        <div class="product" data-name="Product 1" data-price="19.99">
+        <div class="product">
             <img src="https://via.placeholder.com/150" alt="Product 1">
             <h2>Product 1</h2>
             <p>This is a description of Product 1. It's an amazing product that you will love!</p>
             <p class="price">$19.99</p>
             <button onclick="addToCart('Product 1', 19.99)">Add to Cart</button>
         </div>
-        <div class="product" data-name="Product 2" data-price="29.99">
+        <div class="product">
             <img src="https://via.placeholder.com/150" alt="Product 2">
             <h2>Product 2</h2>
             <p>This is a description of Product 2. It's another great product with awesome features!</p>
@@ -233,19 +233,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script>
         // Initialize Supabase client
-        const supabaseUrl = ' https://kxoexwdhzcxmxzygwatq.supabase.co/'; // Replace with your Supabase URL
+        const supabaseUrl = 'https://kxoexwdhzcxmxzygwatq.supabase.co/'; // Replace with your Supabase URL
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4b2V4d2RoemN4bXh6eWd3YXRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk3MDk4MjAsImV4cCI6MjA1NTI4NTgyMH0.wXpVEFOOHHReYwJj6cDltmjy3Ff5MXG75lFhA_8xS78'; // Replace with your Supabase anon key
         const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         let cart = [];
         let cartCount = 0;
 
+        // Add item to cart
         function addToCart(name, price) {
             cart.push({ name, price });
             cartCount++;
             updateCartUI();
         }
 
+        // Update cart UI
         function updateCartUI() {
             const cartItems = document.getElementById('cart-items');
             const cartTotal = document.getElementById('cart-total');
@@ -265,15 +267,18 @@
             cartCountElement.textContent = cartCount;
         }
 
+        // Toggle popup cart
         function toggleCart() {
             const popupCart = document.getElementById('popup-cart');
             popupCart.style.display = popupCart.style.display === 'block' ? 'none' : 'block';
         }
 
+        // Close popup cart
         function closeCart() {
             document.getElementById('popup-cart').style.display = 'none';
         }
 
+        // Show cart view
         function showCartView() {
             document.getElementById('product-view').style.display = 'none';
             document.getElementById('cart-view').style.display = 'flex';
@@ -294,11 +299,13 @@
             checkoutTotal.textContent = total.toFixed(2);
         }
 
+        // Show product view
         function showProducts() {
             document.getElementById('cart-view').style.display = 'none';
             document.getElementById('product-view').style.display = 'flex';
         }
 
+        // Checkout functionality
         async function checkout() {
             // Get user session (if using authentication)
             const { data: { user } } = await supabase.auth.getUser();
