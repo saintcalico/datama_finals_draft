@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic HTML Test</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+    <title>Product Display</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Hello, World!</h1>
-        <p>This is a basic HTML page for testing purposes.</p>
-    </div>
+    <header>
+        <h1>Our Products</h1>
+    </header>
+    <main>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Product 1">
+            <h2>Product 1</h2>
+            <p>This is a description of Product 1. It's an amazing product that you will love!</p>
+            <p class="price">$19.99</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Product 2">
+            <h2>Product 2</h2>
+            <p>This is a description of Product 2. It's another great product with awesome features!</p>
+            <p class="price">$29.99</p>
+            <button>Add to Cart</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 My Store. All rights reserved.</p>
+    </footer>
 </body>
 </html>
