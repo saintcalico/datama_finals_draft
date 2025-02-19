@@ -233,7 +233,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script>
         // Initialize Supabase client
-        const supabaseUrl = 'https://kxoexwdhzcxmxzygwatq.supabase.co/'; // Replace with your Supabase URL
+        const supabaseUrl = ' https://kxoexwdhzcxmxzygwatq.supabase.co/'; // Replace with your Supabase URL
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4b2V4d2RoemN4bXh6eWd3YXRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk3MDk4MjAsImV4cCI6MjA1NTI4NTgyMH0.wXpVEFOOHHReYwJj6cDltmjy3Ff5MXG75lFhA_8xS78'; // Replace with your Supabase anon key
         const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -245,6 +245,7 @@
             cart.push({ name, price });
             cartCount++;
             updateCartUI();
+            console.log('Added to cart:', { name, price }); // Debugging line
         }
 
         // Update cart UI
