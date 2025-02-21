@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  #products, #cart {
+    padding: 1rem;
+  }
+  
+  #product-list, #cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }

@@ -1,59 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database Tables</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background: #fff;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordering Website</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Database Tables</h1>
-    <ul id="table-list"></ul>
+  <header>
+    <h1>My Ordering Website</h1>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#cart">Cart</a>
+    </nav>
+  </header>
 
-    <script>
-        const SUPABASE_URL = "https://kxoexwdhzcxmxzygwatq.supabase.co/";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4b2V4d2RoemN4bXh6eWd3YXRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk3MDk4MjAsImV4cCI6MjA1NTI4NTgyMH0.wXpVEFOOHHReYwJj6cDltmjy3Ff5MXG75lFhA_8xS78";
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  <section id="products">
+    <h2>Products</h2>
+    <div id="product-list"></div>
+  </section>
 
-        async function fetchTables() {
-            try {
-                const { data, error } = await supabase.from('pg_tables').select('tablename');
-                if (error) throw error;
-                
-                const tableList = document.getElementById("table-list");
-                data.forEach(table => {
-                    const li = document.createElement("li");
-                    li.textContent = table.tablename;
-                    tableList.appendChild(li);
-                });
-            } catch (error) {
-                console.error("Error fetching tables:", error.message);
-            }
-        }
+  <section id="cart">
+    <h2>Shopping Cart</h2>
+    <div id="cart-items"></div>
+    <button id="checkout-btn">Checkout</button>
+  </section>
 
-        document.addEventListener("DOMContentLoaded", fetchTables);
-    </script>
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </body>
 </html>
